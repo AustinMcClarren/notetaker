@@ -1,3 +1,4 @@
+// Dependencies
 const express = require('express');
 const path = require('path');
 const fs = require('fs')
@@ -7,7 +8,7 @@ const htmlRoutes = require('./routes/htmlroutes')
 
 //app port and app object
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4000;
 
 
 //middleware
@@ -15,7 +16,7 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
+//api routes
 app.use('/api', apiRoutes)
 app.use('/', htmlRoutes)
 
