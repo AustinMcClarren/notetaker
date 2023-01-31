@@ -11,8 +11,8 @@ const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
 app.get("/notes", (req, res) => {
     fs.readFile("./db/db.json", (err, data) => {
       if (err) throw err;
-      const notes = JSON.parse(data);
-      res.json(notes);
+      const getNotes = JSON.parse(data);
+      res.json(getNotes);
     });
   });
 
@@ -24,16 +24,21 @@ app.get("/notes", (req, res) => {
   app.post('/notes', (req,res)=> {
     if(req.body){
       const newNote = {
-        newNote: (req.body),
+      title: req.body.title,
+      text: req.body.text,
+      id: uuid(),
       };
       console.log(req.body)
+      console.log(uuid)
       
       readAndAppend(newNote, './db/db.json')
       res.json(`New note was added!`);
+      const postedNote = JSON.stringify(data);
+      res.json(postedNote);
     } else{
       res.error('error if note isnt added')
     }
   });
 
-//stringify and parse this?
+
 module.exports = app;
