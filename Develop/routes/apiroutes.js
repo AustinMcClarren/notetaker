@@ -1,8 +1,7 @@
-const path = require('path');
 const fs =require('fs')
 const app = require('express').Router()
 const uuid = require('../helpers/uuid');
-const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
+const {readAndAppend} = require('../helpers/fsUtils'); //from this path i want this to be imported.
 
 
 
@@ -33,8 +32,6 @@ app.get("/notes", (req, res) => {
       
       readAndAppend(newNote, './db/db.json')
       res.json(`New note was added!`);
-      const postedNote = JSON.stringify(data);
-      res.json(postedNote);
     } else{
       res.error('error if note isnt added')
     }
@@ -42,3 +39,7 @@ app.get("/notes", (req, res) => {
 
 
 module.exports = app;
+
+
+ // const postedNote = JSON.stringify(data);
+  // res.json(postedNote);
